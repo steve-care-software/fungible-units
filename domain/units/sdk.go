@@ -2,6 +2,18 @@ package units
 
 import "github.com/steve-care-software/libs/cryptography/hash"
 
+// NewBuilder creates a new builder instance
+func NewBuilder() Builder {
+	hashAdapter := hash.NewAdapter()
+	return createBuilder(hashAdapter)
+}
+
+// NewUnitBuilder creates a new unit builder
+func NewUnitBuilder() UnitBuilder {
+	hashAdapter := hash.NewAdapter()
+	return createUnitBuilder(hashAdapter)
+}
+
 // Builder represents the units builder
 type Builder interface {
 	Create() Builder
