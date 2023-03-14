@@ -59,6 +59,34 @@ type Transaction interface {
 	FreezeUntil() *time.Time
 }
 
+// RepositoryBuilder represents a repository builder
+type RepositoryBuilder interface {
+	Create() RepositoryBuilder
+	WithContext(context uint) RepositoryBuilder
+	WithKind(kind uint) RepositoryBuilder
+	Now() (Repository, error)
+}
+
+// Repository represents a transaction repository
+type Repository interface {
+	Retrieve(hash hash.Hash) (Transaction, error)
+	RetrieveBySender(sender hash.Hash) ([]Transaction, error)
+	RetrieveByRecipient(recipient hash.Hash) ([]Transaction, error)
+}
+
+// ServiceBuilder represents a service builder
+type ServiceBuilder interface {
+	Create() ServiceBuilder
+	WithContext(context uint) ServiceBuilder
+	WithKind(kind uint) ServiceBuilder
+	Now() (Service, error)
+}
+
+// Service represents a transaction service
+type Service interface {
+	Insert(trx Transaction) error
+}
+
 // OwnersBuilder represents an owners builder
 type OwnersBuilder interface {
 	Create() OwnersBuilder
