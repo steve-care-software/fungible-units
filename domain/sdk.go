@@ -7,6 +7,12 @@ import (
 	"github.com/steve-care-software/libs/cryptography/hash"
 )
 
+// NewOwnerBuilder creates a new owner instance
+func NewOwnerBuilder() OwnerBuilder {
+	hashAdapter := hash.NewAdapter()
+	return createOwnerBuilder(hashAdapter)
+}
+
 // NewOriginsBuilder creates a new origins builder
 func NewOriginsBuilder() OriginsBuilder {
 	hashAdapter := hash.NewAdapter()
@@ -50,6 +56,7 @@ type OwnersBuilder interface {
 
 // Owners represents owners
 type Owners interface {
+	Hash() hash.Hash
 	List() []Owner
 }
 
