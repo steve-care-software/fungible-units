@@ -7,10 +7,10 @@ import (
 	"github.com/steve-care-software/libs/cryptography/hash"
 )
 
-// NewOriginsBuilder creates a new origins builder
-func NewOriginsBuilder() OriginsBuilder {
+// NewOwnersBuilder creates a new owners builder
+func NewOwnersBuilder() OwnersBuilder {
 	hashAdapter := hash.NewAdapter()
-	return createOriginsBuilder(hashAdapter)
+	return createOwnersBuilder(hashAdapter)
 }
 
 // NewOwnerBuilder creates a new owner instance
