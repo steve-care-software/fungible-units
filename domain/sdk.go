@@ -3,6 +3,7 @@ package domain
 import (
 	"time"
 
+	"github.com/steve-care-software/fungible-units/domain/units"
 	"github.com/steve-care-software/libs/cryptography/hash"
 )
 
@@ -73,7 +74,7 @@ type Origins interface {
 type OriginBuilder interface {
 	Create() OriginBuilder
 	WithTransaction(trx Transaction) OriginBuilder
-	WithOrigin(origin hash.Hash) OriginBuilder
+	WithUnit(unit units.Unit) OriginBuilder
 	Now() (Origin, error)
 }
 
@@ -82,6 +83,6 @@ type Origin interface {
 	Hash() hash.Hash
 	IsTransaction() bool
 	Transaction() Transaction
-	IsOrigin() bool
-	Origin() hash.Hash
+	IsUnit() bool
+	Unit() units.Unit
 }

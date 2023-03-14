@@ -13,7 +13,7 @@ type ExitOnProcessTrxFn func(trx transactions.Transaction) error
 
 // Application represents a transaction application
 type Application interface {
-	Execute(trx transactions.Transaction) error
+	Transact(trx transactions.Transaction) error
 	Retrieve(hash hash.Hash) (transactions.Transaction, error)
 	RetrieveBySender(sender hash.Hash) ([]transactions.Transaction, error)
 	RetrieveByRecipient(recipient hash.Hash) ([]transactions.Transaction, error)
