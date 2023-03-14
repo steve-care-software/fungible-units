@@ -1,4 +1,4 @@
-package rewards
+package units
 
 import (
 	"github.com/steve-care-software/fungible-units/domain/units"
@@ -7,6 +7,8 @@ import (
 
 // Application represents the reward application
 type Application interface {
-	Calculate(pubKeys []hash.Hash, amount uint) (units.Units, error)
 	Insert(units units.Units) error
+	Retrieve(hash hash.Hash) (units.Unit, error)
+	RetrieveByRecipient(recipient hash.Hash) ([]units.Unit, error)
+	CalculateReward(pubKeys []hash.Hash, amount uint) (units.Units, error)
 }
