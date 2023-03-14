@@ -7,6 +7,11 @@ import (
 	"github.com/steve-care-software/libs/cryptography/hash"
 )
 
+// NewOriginBuilder creates a new origin builder
+func NewOriginBuilder() OriginBuilder {
+	return createOriginBuilder()
+}
+
 // Builder represents a transaction builder
 type Builder interface {
 	Create() Builder
