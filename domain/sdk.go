@@ -7,6 +7,12 @@ import (
 	"github.com/steve-care-software/libs/cryptography/hash"
 )
 
+// NewBuilder creates a new builder instance
+func NewBuilder() Builder {
+	hashAdapter := hash.NewAdapter()
+	return createBuilder(hashAdapter)
+}
+
 // NewOwnersBuilder creates a new owners builder
 func NewOwnersBuilder() OwnersBuilder {
 	hashAdapter := hash.NewAdapter()
@@ -36,7 +42,7 @@ type Builder interface {
 	WithGenesis(genesis hash.Hash) Builder
 	WithOrigins(origins Origins) Builder
 	WithOwners(owners Owners) Builder
-	ExecutedOn(executedOn time.Time) Builder
+	ExecuteOn(executeOn time.Time) Builder
 	FreezeUntil(freezeUntil time.Time) Builder
 	Now() (Transaction, error)
 }
@@ -48,9 +54,9 @@ type Transaction interface {
 	Origins() Origins
 	Owners() Owners
 	HasExecuteOn() bool
-	ExecuteOn() time.Time
+	ExecuteOn() *time.Time
 	HasFreezeUntil() bool
-	FreezeUntil() time.Time
+	FreezeUntil() *time.Time
 }
 
 // OwnersBuilder represents an owners builder
