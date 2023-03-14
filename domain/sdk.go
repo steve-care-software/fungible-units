@@ -115,6 +115,32 @@ type Owner interface {
 	PubKey() hash.Hash
 }
 
+// OwnerRepositoryBuilder represents an owner repository builder
+type OwnerRepositoryBuilder interface {
+	Create() OwnerRepositoryBuilder
+	WithContext(context uint) OwnerRepositoryBuilder
+	WithKind(kind uint) OwnerRepositoryBuilder
+	Now() (OwnerRepository, error)
+}
+
+// OwnerRepository represents an owner repository
+type OwnerRepository interface {
+	Retrieve(hash hash.Hash) (Owner, error)
+}
+
+// OwnerServiceBuilder represents an owner service builder
+type OwnerServiceBuilder interface {
+	Create() OwnerServiceBuilder
+	WithContext(context uint) OwnerServiceBuilder
+	WithKind(kind uint) OwnerServiceBuilder
+	Now() (OwnerService, error)
+}
+
+// OwnerService represents an owner service
+type OwnerService interface {
+	Insert(trx Owner) error
+}
+
 // OriginsBuilder represents an origins builder
 type OriginsBuilder interface {
 	Create() OriginsBuilder
@@ -143,4 +169,30 @@ type Origin interface {
 	Transaction() Transaction
 	IsUnit() bool
 	Unit() units.Unit
+}
+
+// OriginRepositoryBuilder represents an origin repository builder
+type OriginRepositoryBuilder interface {
+	Create() OriginRepositoryBuilder
+	WithContext(context uint) OriginRepositoryBuilder
+	WithKind(kind uint) OriginRepositoryBuilder
+	Now() (OriginRepository, error)
+}
+
+// OriginRepository represents an origin repository
+type OriginRepository interface {
+	Retrieve(hash hash.Hash) (Origin, error)
+}
+
+// OriginServiceBuilder represents an origin service builder
+type OriginServiceBuilder interface {
+	Create() OriginServiceBuilder
+	WithContext(context uint) OriginServiceBuilder
+	WithKind(kind uint) OriginServiceBuilder
+	Now() (OriginService, error)
+}
+
+// OriginService represents an origin service
+type OriginService interface {
+	Insert(trx Origin) error
 }

@@ -43,3 +43,29 @@ type Unit interface {
 	PubKey() hash.Hash
 	Amount() uint
 }
+
+// UnitRepositoryBuilder represents an unit repository builder
+type UnitRepositoryBuilder interface {
+	Create() UnitRepositoryBuilder
+	WithContext(context uint) UnitRepositoryBuilder
+	WithKind(kind uint) UnitRepositoryBuilder
+	Now() (UnitRepository, error)
+}
+
+// UnitRepository represents an unit repository
+type UnitRepository interface {
+	Retrieve(hash hash.Hash) (Unit, error)
+}
+
+// UnitServiceBuilder represents an unit service builder
+type UnitServiceBuilder interface {
+	Create() UnitServiceBuilder
+	WithContext(context uint) UnitServiceBuilder
+	WithKind(kind uint) UnitServiceBuilder
+	Now() (UnitService, error)
+}
+
+// UnitService represents an unit service
+type UnitService interface {
+	Insert(trx Unit) error
+}
